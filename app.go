@@ -26,16 +26,16 @@ func main() {
 
 	// create messaging options
 	messagingOptions = messaging.Options{
-		LookupAddress:  []string{"http://devel-go.tkpd:4161"}, //TODO : change this with nsqd address :4161
-		PublishAddress: "devel-go.tkpd:4150",                  //TODO : change this with nsqd address :4150
-		Prefix:         "tech_curiculum_nsq_",
+		LookupAddress:  []string{""}, //TODO : change this with nsqd address :4161
+		PublishAddress: "",           //TODO : change this with nsqd address :4150
+		Prefix:         "",
 	}
 	consumerEngine = messaging.NewConsumerEngine(messagingOptions)
 
 	// create consumer's option
 	consumerOption1 := messaging.ConsumerOptions{
-		Topic:       "t1",    // TODO : change this with your topic name
-		Channel:     "loger", //TODO : change this with your channel name
+		Topic:       "", // TODO : change this with your topic name
+		Channel:     "", //TODO : change this with your channel name
 		Handler:     handlerConsumer1,
 		MaxAttempts: defaultConsumerMaxAttempts,
 		MaxInFlight: defaultConsumerMaxInFlight,
@@ -65,7 +65,5 @@ func main() {
 
 func handlerConsumer1(msg *nsq.Message) error {
 	//TODO : log the message and finish it !
-	log.Println("got message :", string(msg.Body))
-	msg.Finish()
 	return nil
 }
