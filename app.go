@@ -6,8 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	nsq "github.com/bitly/go-nsq"
 	"github.com/ikhsanfaruqi/gonsq/messaging"
+	"github.com/nsqio/go-nsq"
 )
 
 const (
@@ -20,7 +20,7 @@ func main() {
 	// declare var(s)
 	var (
 		messagingOptions messaging.Options
-		consumerEngine   *messaging.ConsumerEngine
+		consumerEngine   *messaging.Consumer
 		err              error
 	)
 
@@ -30,7 +30,7 @@ func main() {
 		PublishAddress: "",           //TODO : change this with nsqd address :4150
 		Prefix:         "",
 	}
-	consumerEngine = messaging.NewConsumerEngine(messagingOptions)
+	consumerEngine = messaging.NewConsumer(messagingOptions)
 
 	// create consumer's option
 	consumerOption1 := messaging.ConsumerOptions{
